@@ -139,6 +139,14 @@ To visualize LIME explanations, run the script `lime_explainer_acd.py` or `lime_
 | `lime_explainer_acp.py`    | Generate LIME explanations for ACP tasks.            |
 | `data/aware_dataset.csv`   | AWARE dataset for RE tasks.                          |
 | `checkpoints/`             | Directory to save and load trained models.           |
+| `Games ACD.ipynb`          | Notebook for ACD task on Games domain.               |
+| `Games ACP.ipynb`          | Notebook for ACP task on Games domain.               |
+| `Productivity ACD.ipynb`   | Notebook for ACD task on Productivity domain.        |
+| `Productivity ACP.ipynb`   | Notebook for ACP task on Productivity domain.        |
+| `Social ACD.ipynb`         | Notebook for ACD task on Social Networking domain.   |
+| `Social ACP.ipynb`         | Notebook for ACP task on Social Networking domain.   |
+| `XAI for ACD Task.ipynb`   | LIME explanations for ACD tasks.                     |
+| `XAI for ACP Task.ipynb`   | LIME explanations for ACP tasks.                     |
 
 ---
 
