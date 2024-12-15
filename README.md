@@ -15,6 +15,7 @@ This implementation is based on the paper:
 - [How to Run the Code](#how-to-run-the-code)  
 - [Results](#results)  
 - [Explainability with LIME](#explainability-with-lime)  
+- [Files and Scripts](#files-and-scripts)  
 - [Citation](#citation)  
 - [License](#license)  
 
@@ -36,7 +37,7 @@ The **AWARE dataset** (ABSA Warehouse of Apps REviews) is specifically designed 
 - **Productivity**  
 - **Games**  
 
-Download the dataset: [https://zenodo.org/records/5528481](#) (Add download link if available).
+Download the dataset: [AWARE Dataset](https://zenodo.org/records/5528481).
 
 ---
 
@@ -80,19 +81,22 @@ data/
 ### 3. Train the Model  
 Run the following command to fine-tune BERT:  
 ```bash
-python train.py --epochs 16 --batch_size 8 --learning_rate 1e-5
+python train_acd.py --epochs 16 --batch_size 8 --learning_rate 1e-5
+python train_acp.py --epochs 16 --batch_size 8 --learning_rate 1e-5
 ```
 
 ### 4. Evaluate the Model  
 Evaluate the model on the test set:  
 ```bash
-python evaluate.py --checkpoint_path checkpoints/best_model.pt
+python evaluate_acd.py --checkpoint_path checkpoints/acd_model.pt
+python evaluate_acp.py --checkpoint_path checkpoints/acp_model.pt
 ```
 
 ### 5. Generate Explanations with LIME  
 Run the following to generate LIME-based explanations:  
 ```bash
-python lime_explainer.py --input_text "This app has bugs after the update."
+python lime_explainer_acd.py --input_text "This app has bugs after the update."
+python lime_explainer_acp.py --input_text "This app has bugs after the update."
 ```
 
 ---
@@ -120,7 +124,21 @@ LIME generates local explanations for BERT predictions. For example:
 **LIME Explanation**:  
 - Tokens like "crashes" and "frequently" contributed most to the *Negative* polarity prediction.  
 
-To visualize LIME explanations, run the script `lime_explainer.py` with any input text.
+To visualize LIME explanations, run the script `lime_explainer_acd.py` or `lime_explainer_acp.py` with any input text.
+
+---
+
+## **Files and Scripts**  
+| **File/Script**            | **Description**                                       |
+|----------------------------|-------------------------------------------------------|
+| `train_acd.py`             | Script to train BERT for Aspect Category Detection.   |
+| `train_acp.py`             | Script to train BERT for Aspect Category Polarity.    |
+| `evaluate_acd.py`          | Evaluate the ACD model performance.                  |
+| `evaluate_acp.py`          | Evaluate the ACP model performance.                  |
+| `lime_explainer_acd.py`    | Generate LIME explanations for ACD tasks.            |
+| `lime_explainer_acp.py`    | Generate LIME explanations for ACP tasks.            |
+| `data/aware_dataset.csv`   | AWARE dataset for RE tasks.                          |
+| `checkpoints/`             | Directory to save and load trained models.           |
 
 ---
 
@@ -128,12 +146,7 @@ To visualize LIME explanations, run the script `lime_explainer.py` with any inpu
 If you use this code in your work, please cite the following:  
 
 ```bibtex
-@article{taj2024absa,
-  title={Aspect-Based Sentiment Analysis for Software Requirements Elicitation using Fine-Tuned BERT and Explainable AI},
-  author={Soonh Taj, Sher Muhammad Daudpota, Ali Shariq Imran, Zenun Kastrati},
-  journal={Engineering Applications of Artificial Intelligence},
-  year={2024}
-}
+
 ```
 
 ---
